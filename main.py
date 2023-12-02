@@ -1,4 +1,5 @@
 from selenium import webdriver
+from time import sleep
 
 options = webdriver.ChromeOptions()
 
@@ -13,3 +14,4 @@ url = "https://codeforces.com/profile/Nithin_XS"
 #get window with specified URL and maximize it 
 driver.get(url)
 driver.maximize_window()
+sleep(5)
