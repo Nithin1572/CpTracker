@@ -27,8 +27,8 @@ for user in users:
     individualUser = []
 
     #getting search box and enter button using XPATH
-    search_box   = driver.find_element(By.XPATH, '//*[@id="sidebar"]/div[5]/form/div[1]/label/input')
-    enter_button = driver.find_element(By.XPATH, '//*[@id="sidebar"]/div[5]/form/div[2]/input')
+    search_box   = driver.find_element(By.XPATH, '//*[@id="sidebar"]/div[4]/form/div[1]/label/input')
+    enter_button = driver.find_element(By.XPATH, '//*[@id="sidebar"]/div[4]/form/div[2]/input')
 
     #clearing the search box
     search_box.clear()
