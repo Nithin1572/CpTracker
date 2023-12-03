@@ -5,13 +5,16 @@ from flask                          import Flask, render_template, request
 from selenium.common.exceptions     import NoSuchAttributeException
 import pandas as pd
 
-#fetching list pf user names from input_list.xlsx (excel file)
+#fetching list of user names from input_list.xlsx (excel file)
+#and convert it to python list
 df = pd.read_excel(r"C:\Users\Nithin\Desktop\CpTracker\input_list.xlsx")
 users = df.values.tolist()
 
 #initialize chrome drive 
+#add_argument prevent browsesr from opening again and again
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
+options.add_argument("headless")
 driver = webdriver.Chrome(options=options)
 
 #set codeforces url in chrome driver 
@@ -40,10 +43,14 @@ for user in users:
         individualUser.append(user)
         individualUser.append(rating.text)
         outputList.append(individualUser)
-
+        print("user name :%s rating: %s" %(user,rating.text))
+        
         #navigate back to home page
         driver.back()
     except Exception:
+        individualUser.append(user)
+        individualUser.append("INVALID USER")
+        outputList.append(individualUser)
         print("Invalid user name")
 
 #convert list to dataframe and export it to outputlist excel
