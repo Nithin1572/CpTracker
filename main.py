@@ -14,7 +14,7 @@ users = df.values.tolist()
 #add_argument prevent browsesr from opening again and again
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
-options.add_argument("headless")
+# options.add_argument("headless")
 driver = webdriver.Chrome(options=options)
 
 #set codeforces url in chrome driver 
@@ -40,7 +40,7 @@ for user in users:
         rating = driver.find_element(By.XPATH, '//*[@id="pageContent"]/div[2]/div/div[2]/ul/li[1]/span[1]')
 
         #storing name and rating in a python list
-        individualUser.append(user)
+        individualUser.append(user[0][0:len(user[0])])
         individualUser.append(rating.text)
         outputList.append(individualUser)
         print("user name :%s rating: %s" %(user,rating.text))
@@ -48,7 +48,8 @@ for user in users:
         #navigate back to home page
         driver.back()
     except Exception:
-        individualUser.append(user)
+        # print(user[2:len(user)-2])
+        individualUser.append(user[0][0:len(user[0])])
         individualUser.append("INVALID USER")
         outputList.append(individualUser)
         print("Invalid user name")
